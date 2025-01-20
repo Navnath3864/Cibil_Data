@@ -22,8 +22,20 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	}
 
 	@Override
-	public List<CibilScoreData> viewAllCibilScores(List<CibilScoreData> cs) {
+	public List<CibilScoreData> viewAllCibilScores() {
 		List<CibilScoreData> al=cibilScoreRepository.findAll();
 		return al;
+	}
+
+	@Override
+	public CibilScoreData updateCibilScore(CibilScoreData cs) {
+		CibilScoreData csd=cibilScoreRepository.save(cs);
+		return csd;
+	}
+
+	@Override
+	public void deleteCibilScoreById(int id) {
+		cibilScoreRepository.deleteById(id);
+		
 	}
 }
