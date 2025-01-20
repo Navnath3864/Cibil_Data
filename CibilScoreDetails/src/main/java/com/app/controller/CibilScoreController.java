@@ -11,24 +11,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.CibilScoreData;
 import com.app.service.CibilScoreService;
 
 @RestController
+@RequestMapping("/api/cibil")
 public class CibilScoreController {
 
 	@Autowired
 	CibilScoreService cibilScoreService;
 	
-	@PostMapping("/api/cibil/save")
+	@PostMapping("/save")
 	public ResponseEntity<CibilScoreData> addCibilScore(@RequestBody CibilScoreData cs)
 	{
 		CibilScoreData csd=cibilScoreService.addCibilScore(cs);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
-	@GetMapping("/api/cibil/getAll")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
 	{
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
@@ -37,14 +39,14 @@ public class CibilScoreController {
 		
 	}
 	
-	@PutMapping("/api/cibil/update")
+	@PutMapping("/update")
 	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
 	{
 		CibilScoreData csd=cibilScoreService.updateCibilScore(cs);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/api/cibil/{cibilId}")
+	@DeleteMapping("delete/{cibilId}")
 	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable("cibilId") int cibilId)
 	{
 		cibilScoreService.deleteCibilScoreById(cibilId);
