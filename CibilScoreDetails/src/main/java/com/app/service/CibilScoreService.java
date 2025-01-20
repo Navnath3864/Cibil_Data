@@ -12,6 +12,6 @@ public List<CibilScoreData> viewAllCibilScores();
 
 public CibilScoreData updateCibilScore(CibilScoreData cs);
 
-public void deleteCibilScoreById(int id);
+public void deleteCibilScoreById(int cibilId);
 
 }
