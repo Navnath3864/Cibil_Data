@@ -1,6 +1,9 @@
 package com.app.serviceImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +19,46 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	CibilScoreRepository cibilScoreRepository;
 
 	@Override
-	public CibilScoreData addCibilScore(CibilScoreData cs) {
-		CibilScoreData csd=cibilScoreRepository.save(cs);
-		return csd;
+	public CibilScoreData addCibilScore(CibilScoreData cs) 
+	{
+		
+		int randomCibilScore = ThreadLocalRandom.current().nextInt(0, 1000);
+        cs.setCibilScore(randomCibilScore);
+
+        
+        String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        cs.setCibilScoreDateTime(currentDateTime);
+
+        
+        String status;
+        if (randomCibilScore >= 300 && randomCibilScore <= 499) 
+        {
+            status = "Poor";
+        } 
+        else if (randomCibilScore >= 500 && randomCibilScore <= 649) 
+        {
+            status = "Average";
+        } 
+        else if (randomCibilScore >= 650 && randomCibilScore <= 749) 
+        {
+            status = "Good";
+        } 
+        else 
+        {
+            status = "Excellent";
+        }
+        cs.setStatus(status);
+
+        
+        if (randomCibilScore >= 750) {
+            cs.setCibilRemark("Applicable");
+        } else {
+            cs.setCibilRemark("Not Applicable");
+        }
+
+        CibilScoreData csd=cibilScoreRepository.save(cs);
+        return csd;
+		
 	}
 
 	@Override
@@ -34,8 +74,8 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	}
 
 	@Override
-	public void deleteCibilScoreById(int id) {
-		cibilScoreRepository.deleteById(id);
+	public void deleteCibilScoreById(int cibilId) {
+		cibilScoreRepository.deleteById(cibilId);
 		
 	}
 }

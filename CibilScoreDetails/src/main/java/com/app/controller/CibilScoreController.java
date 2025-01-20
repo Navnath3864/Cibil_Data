@@ -22,30 +22,30 @@ public class CibilScoreController {
 	@Autowired
 	CibilScoreService cibilScoreService;
 	
-	@PostMapping("/save")
+	@PostMapping("/api/cibil/save")
 	public ResponseEntity<CibilScoreData> addCibilScore(@RequestBody CibilScoreData cs)
 	{
 		CibilScoreData csd=cibilScoreService.addCibilScore(cs);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
-	@GetMapping("/getAll")
+	@GetMapping("/api/cibil/getAll")
 	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
 	{
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/api/cibil/update")
 	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
 	{
 		CibilScoreData csd=cibilScoreService.updateCibilScore(cs);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable("id") int id)
+	@DeleteMapping("/api/cibil/{cibilId}")
+	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable("cibilId") int cibilId)
 	{
-		cibilScoreService.deleteCibilScoreById(id);
+		cibilScoreService.deleteCibilScoreById(cibilId);
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 	}
