@@ -8,6 +8,10 @@ public interface CibilScoreService {
 
 public	CibilScoreData addCibilScore(CibilScoreData cs);
 
-public List<CibilScoreData> viewAllCibilScores(List<CibilScoreData> cs);
+public List<CibilScoreData> viewAllCibilScores();
+
+public CibilScoreData updateCibilScore(CibilScoreData cs);
+
+public void deleteCibilScoreById(int id);
 
 }

@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +21,7 @@ public class CibilScoreController {
 
 	@Autowired
 	CibilScoreService cibilScoreService;
+	
 	@PostMapping("/save")
 	public ResponseEntity<CibilScoreData> addCibilScore(@RequestBody CibilScoreData cs)
 	{
@@ -25,9 +29,25 @@ public class CibilScoreController {
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
 	@GetMapping("/getAll")
-	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores(@RequestBody List<CibilScoreData> cs)
+	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
 	{
-		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores(cs);
+		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
+	{
+		CibilScoreData csd=cibilScoreService.updateCibilScore(cs);
+		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.ACCEPTED);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable("id") int id)
+	{
+		cibilScoreService.deleteCibilScoreById(id);
+		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
+		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
+	}
+	
 }
