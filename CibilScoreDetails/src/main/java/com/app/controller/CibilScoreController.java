@@ -29,5 +29,6 @@ public class CibilScoreController {
 	{
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores(cs);
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
+		
 	}
 }
