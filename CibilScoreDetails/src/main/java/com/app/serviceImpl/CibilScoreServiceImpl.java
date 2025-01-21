@@ -31,21 +31,21 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 
         
         String status;
-        if (randomCibilScore >= 300 && randomCibilScore <= 499) 
+        if (randomCibilScore >= 750) 
         {
-            status = "Poor";
-        } 
-        else if (randomCibilScore >= 500 && randomCibilScore <= 649) 
-        {
-            status = "Average";
+            status = "Excellant";
         } 
         else if (randomCibilScore >= 650 && randomCibilScore <= 749) 
         {
             status = "Good";
         } 
+        else if (randomCibilScore >= 500 && randomCibilScore <= 649) 
+        {
+            status = "Average";
+        } 
         else 
         {
-            status = "Excellent";
+            status = "Poor";
         }
         cs.setStatus(status);
 
@@ -60,6 +60,7 @@ public class CibilScoreServiceImpl implements CibilScoreService{
         return csd;
 		
 	}
+	
 
 	@Override
 	public List<CibilScoreData> viewAllCibilScores() {
