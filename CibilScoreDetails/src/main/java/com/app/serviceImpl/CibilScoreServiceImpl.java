@@ -76,6 +76,5 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	@Override
 	public void deleteCibilScoreById(int cibilId) {
 		cibilScoreRepository.deleteById(cibilId);
-		
 	}
 }
