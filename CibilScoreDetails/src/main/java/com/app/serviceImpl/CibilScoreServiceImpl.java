@@ -18,6 +18,7 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	@Autowired
 	CibilScoreRepository cibilScoreRepository;
 
+	
 	@Override
 	public CibilScoreData addCibilScore(CibilScoreData cs) 
 	{
