@@ -22,7 +22,7 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	public CibilScoreData addCibilScore(CibilScoreData cs) 
 	{
 		
-		int randomCibilScore = ThreadLocalRandom.current().nextInt(0, 1000);
+		int randomCibilScore = ThreadLocalRandom.current().nextInt(100, 999);
         cs.setCibilScore(randomCibilScore);
 
         
