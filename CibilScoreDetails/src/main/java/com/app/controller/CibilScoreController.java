@@ -36,8 +36,7 @@ public class CibilScoreController {
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 		
-		
-	}
+}
 	
 	@PutMapping("/update")
 	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
