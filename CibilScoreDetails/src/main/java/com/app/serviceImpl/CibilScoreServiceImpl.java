@@ -118,8 +118,7 @@ public class CibilScoreServiceImpl implements CibilScoreService{
             cs.setCibilRemark("Not Applicable");
         }
         
-        
-        return cs;
+        return cibilScoreRepository.save(cs);
 
 	}
 }
