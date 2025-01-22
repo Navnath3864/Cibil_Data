@@ -14,4 +14,6 @@ public CibilScoreData updateCibilScore(CibilScoreData cs);
 
 public void deleteCibilScoreById(int cibilId);
 
+public CibilScoreData generateCibilScore();
+
 }

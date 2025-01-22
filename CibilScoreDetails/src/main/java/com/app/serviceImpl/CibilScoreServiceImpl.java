@@ -79,4 +79,47 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 	public void deleteCibilScoreById(int cibilId) {
 		cibilScoreRepository.deleteById(cibilId);
 	}
+
+
+	@Override
+	public CibilScoreData generateCibilScore() {
+		CibilScoreData cs = new CibilScoreData();
+		int randomCibilScore = ThreadLocalRandom.current().nextInt(100, 999);
+        cs.setCibilScore(randomCibilScore);
+
+        
+        String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        cs.setCibilScoreDateTime(currentDateTime);
+
+        
+        String status;
+        if (randomCibilScore >= 750) 
+        {
+            status = "Excellant";
+        } 
+        else if (randomCibilScore >= 650 && randomCibilScore <= 749) 
+        {
+            status = "Good";
+        } 
+        else if (randomCibilScore >= 500 && randomCibilScore <= 649) 
+        {
+            status = "Average";
+        } 
+        else 
+        {
+            status = "Poor";
+        }
+        cs.setStatus(status);
+
+        
+        if (randomCibilScore >= 750) {
+            cs.setCibilRemark("Applicable");
+        } else {
+            cs.setCibilRemark("Not Applicable");
+        }
+        
+        
+        return cs;
+
+	}
 }

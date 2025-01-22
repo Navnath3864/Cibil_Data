@@ -30,6 +30,14 @@ public class CibilScoreController {
 		CibilScoreData csd=cibilScoreService.addCibilScore(cs);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/get")
+	public ResponseEntity<CibilScoreData> generateCibil()
+	{
+		CibilScoreData csd=cibilScoreService.generateCibilScore();
+		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.OK);
+	}
+	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
 	{
@@ -45,7 +53,7 @@ public class CibilScoreController {
 	}
 	
 	@DeleteMapping("delete/{cibilId}")
-	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable("cibilId") int cibilId)
+	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable int cibilId)
 	{
 		cibilScoreService.deleteCibilScoreById(cibilId);
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
