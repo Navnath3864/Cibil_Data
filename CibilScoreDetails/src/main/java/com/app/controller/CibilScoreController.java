@@ -59,6 +59,8 @@ public class CibilScoreController {
 		cibilScoreService.deleteCibilScoreById(cibilId);
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
+		
+		
 	}
 	
 }
