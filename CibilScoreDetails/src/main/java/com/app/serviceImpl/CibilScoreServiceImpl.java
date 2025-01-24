@@ -113,9 +113,9 @@ public class CibilScoreServiceImpl implements CibilScoreService{
 
         
         if (randomCibilScore >= 750) {
-            cs.setCibilRemark("Applicable");
+            cs.setCibilRemark("Approved");
         } else {
-            cs.setCibilRemark("Not Applicable");
+            cs.setCibilRemark("Rejected");
         }
         
         return cs;
