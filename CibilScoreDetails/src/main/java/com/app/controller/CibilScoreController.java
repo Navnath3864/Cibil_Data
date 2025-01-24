@@ -62,6 +62,7 @@ public class CibilScoreController {
 	@DeleteMapping("delete/{cibilId}")
 	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable int cibilId)
 	{
+		
 		cibilScoreService.deleteCibilScoreById(cibilId);
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
