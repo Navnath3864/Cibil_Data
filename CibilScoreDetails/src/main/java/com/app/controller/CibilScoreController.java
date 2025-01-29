@@ -31,38 +31,47 @@ public class CibilScoreController {
 	@PostMapping("/save")
 	public ResponseEntity<CibilScoreData> addCibilScore(@RequestBody CibilScoreData cs)
 	{
+		LOGGER.info("Received POST request to create CibilScore: {}", cs);
 		CibilScoreData csd=cibilScoreService.addCibilScore(cs);
+		LOGGER.debug("CibilScore created successfully: {}", csd);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/get")
 	public ResponseEntity<CibilScoreData> generateCibil()
 	{
-		LOGGER.info("Request GET privide cibil score details");
+		LOGGER.info("Received GET request to fetch CibilScore");
 		CibilScoreData csd=cibilScoreService.generateCibilScore();
-	//	LOGGER.debug("Debug cibil score details : {}"+csd);
+		LOGGER.debug("Returning CibilScore: {}", csd);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
 	{
+		LOGGER.info("Received GET request to fetch all CibilScore data");
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
+		LOGGER.debug("Fetched {} CibilScore data successfully", csd.size());
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
 	{
+		LOGGER.info("Received PUT request for update cibilscore: {}",cs);
 		CibilScoreData csd=cibilScoreService.updateCibilScore(cs);
+		LOGGER.debug("CibilScore updated successfully: {}", csd);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("delete/{cibilId}")
 	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable int cibilId)
 	{
+		LOGGER.warn("Received DELETE request for CibilScore with ID: {}", cibilId);
 		cibilScoreService.deleteCibilScoreById(cibilId);
+		LOGGER.info("Customer deleted successfully: {}", cibilId);
 		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
+		LOGGER.debug("Fetched {} all CibilScore data successfully by deleting CibilScore data of given cibilId",csd.size());
 		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
 	}
 	
