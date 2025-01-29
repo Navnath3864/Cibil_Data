@@ -1,4 +1,4 @@
-package com.app.serviceImpl;
+package com.app.cibil.serviceImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,9 +8,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.model.CibilScoreData;
-import com.app.repository.CibilScoreRepository;
-import com.app.service.CibilScoreService;
+import com.app.cibil.model.CibilScoreData;
+import com.app.cibil.repository.CibilScoreRepository;
+import com.app.cibil.service.CibilScoreService;
 
 @Service
 public class CibilScoreServiceImpl implements CibilScoreService{

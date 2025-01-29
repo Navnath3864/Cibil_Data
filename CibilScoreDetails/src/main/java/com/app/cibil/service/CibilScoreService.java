@@ -1,8 +1,8 @@
-package com.app.service;
+package com.app.cibil.service;
 
 import java.util.List;
 
-import com.app.model.CibilScoreData;
+import com.app.cibil.model.CibilScoreData;
 
 public interface CibilScoreService {
 
