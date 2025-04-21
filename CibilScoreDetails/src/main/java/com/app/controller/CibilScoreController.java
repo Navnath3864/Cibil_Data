@@ -1,17 +1,12 @@
 package com.app.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,39 +26,20 @@ public class CibilScoreController {
 	@PostMapping("/save")
 	public ResponseEntity<CibilScoreData> addCibilScore(@RequestBody CibilScoreData cs)
 	{
+		LOGGER.info("Received POST request to create CibilScore: {}", cs);
 		CibilScoreData csd=cibilScoreService.addCibilScore(cs);
+		LOGGER.debug("CibilScore created successfully: {}", csd);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/get")
 	public ResponseEntity<CibilScoreData> generateCibil()
 	{
-		LOGGER.info("Request GET privide cibil score details");
+		LOGGER.info("Received GET request to fetch CibilScore");
 		CibilScoreData csd=cibilScoreService.generateCibilScore();
-	//	LOGGER.debug("Debug cibil score details : {}"+csd);
+		LOGGER.debug("Returning CibilScore: {}", csd);
 		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getAll")
-	public ResponseEntity<List<CibilScoreData>> viewAllCibilScores()
-	{
-		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
-		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
-	}
-	
-	@PutMapping("/update")
-	public ResponseEntity<CibilScoreData> updateCibilScore(@RequestBody CibilScoreData cs)
-	{
-		CibilScoreData csd=cibilScoreService.updateCibilScore(cs);
-		return new ResponseEntity<CibilScoreData>(csd,HttpStatus.ACCEPTED);
-	}
-	
-	@DeleteMapping("delete/{cibilId}")
-	public ResponseEntity<List<CibilScoreData>> deleteCibilScoreById(@PathVariable int cibilId)
-	{
-		cibilScoreService.deleteCibilScoreById(cibilId);
-		List<CibilScoreData> csd=cibilScoreService.viewAllCibilScores();
-		return new ResponseEntity<List<CibilScoreData>>(csd,HttpStatus.OK);
-	}
 	
 }
